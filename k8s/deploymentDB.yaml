@@ -14,10 +14,6 @@ spec:
       containers:
       - name: postgres
         image: postgres:14.3
-        resources:
-          limits:
-            memory: "128Mi"
-            cpu: "500m"
         ports:
         - containerPort: 5432
         env:
@@ -64,11 +60,6 @@ spec:
           value: "Kube#123"
         - name: DB_HOST
           value: "postgres"
-
-        resources:
-          limits:
-            memory: "128Mi"
-            cpu: "500m"
         ports:
         - containerPort: 8080
 ---
