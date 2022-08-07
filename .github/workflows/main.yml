@@ -44,7 +44,7 @@ jobs:
           # List of tags
           tags: |
             allwenn/kubenews:latest
-            allwenn/kubenews:${{ github.run_numer }}
+            allwenn/kubenews:${{ github.run_number }}
            
   
   CD:
