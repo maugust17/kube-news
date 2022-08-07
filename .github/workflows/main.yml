@@ -35,7 +35,7 @@ jobs:
       - name: Build and push Docker images
         # You may pin to the exact commit or the version.
         # uses: docker/build-push-action@c84f38281176d4c9cdb1626ffafcd6b3911b5d94
-        uses: docker/build-push-action@v3.1.1
+        uses: docker/build-push-action@v3.0.0
         with:
           context: ./src
           # Path to the Dockerfile
@@ -57,14 +57,14 @@ jobs:
       - uses: actions/checkout@v3
       
       - name: Kubernetes Set Context
-        uses: Azure/k8s-set-context@v3.0
+        uses: Azure/k8s-set-context@v2
         with:
           # Acceptable values: kubeconfig or service-account or service-principal
           method: kubeconfig
           # Contents of kubeconfig file
           kubeconfig: ${{secrets.KUBECONFIG}}
       - name: Deploy to Kubernetes cluster
-        uses: Azure/k8s-deploy@v4.3
+        uses: Azure/k8s-deploy@v3.1
         with:
           # Path to the manifest files which will be used for deployment.
           manifests: k8s/DeploymentDB.yaml
