@@ -31,7 +31,7 @@ jobs:
           # Username used to log against the Docker registry
           username: ${{secrets.DOCKERHUB_USER}}
           # Password or personal access token used to log against the Docker registry
-          password: ${{secrets.DOCKERHUB_PASSWORD}}
+          password: ${{secrets.DOCKERHUB_PWD}}
       - name: Build and push Docker images
         # You may pin to the exact commit or the version.
         # uses: docker/build-push-action@c84f38281176d4c9cdb1626ffafcd6b3911b5d94
@@ -56,6 +56,23 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
       
+      - name: Kubernetes Set Context
+        uses: Azure/k8s-set-context@v3.0
+        with:
+          # Acceptable values: kubeconfig or service-account or service-principal
+          method: kubeconfig
+          # Contents of kubeconfig file
+          kubeconfig: ${{secrets.KUBECONFIG}}
+         
+      
+      - name: Deploy to Kubernetes cluster
+        uses: Azure/k8s-deploy@v4.3
+        with:
+          # Path to the manifest files which will be used for deployment.
+          manifests: k8s/DeploymentDB.yaml
+          # Fully qualified resource URL of the image(s) to be used for substitutions on the manifest files Example: contosodemo.azurecr.io/helloworld:test
+          images: allwenn/kubenews:${{ github.run_numer }}
+          
   
   
   # This workflow contains a single job called "build"
