@@ -67,7 +67,8 @@ jobs:
         uses: Azure/k8s-deploy@v3.1
         with:
           # Path to the manifest files which will be used for deployment.
-          manifests: k8s/DeploymentDB.yaml
+          manifests: |
+            k8s/deploymentDB.yaml
           # Fully qualified resource URL of the image(s) to be used for substitutions on the manifest files Example: contosodemo.azurecr.io/helloworld:test
           images: allwenn/kubenews:${{ github.run_numer }}
           
