@@ -70,6 +70,6 @@ jobs:
           manifests: |
             k8s/deploymentDB.yaml
           # Fully qualified resource URL of the image(s) to be used for substitutions on the manifest files Example: contosodemo.azurecr.io/helloworld:test
-          images: allwenn/kubenews:${{ github.run_numer }}
+          images: allwenn/kubenews:${{ github.run_number }}
           
   
